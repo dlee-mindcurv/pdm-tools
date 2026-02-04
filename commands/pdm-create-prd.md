@@ -53,11 +53,11 @@ Format:
 - [ ] Specific verifiable criterion
 - [ ] Another criterion
 - [ ] Typecheck/lint passes
-- [ ] **[UI stories only]** Verify in browser using dev-browser skill
+- [ ] **[UI stories only]** Verify in browser using pdm-webapp-testing skill
   Important:
 
 Acceptance criteria must be verifiable, not vague. "Works correctly" is bad. "Button shows confirmation dialog before deleting" is good.
-For any story with UI changes: Always include "Verify in browser using dev-browser skill" as acceptance criteria. This ensures visual verification of frontend work.
+For any story with UI changes: Always include "Verify in browser using pdm-webapp-testing skill" as acceptance criteria. This ensures visual verification of frontend work.
 4. Functional Requirements
 
 Numbered list of specific functionalities:
