@@ -58,7 +58,7 @@ npm run lint
 
 ### Step 6: Browser Verification (UI Stories)
 
-If the acceptance criteria includes "Verify in browser using dev-browser skill":
+If the acceptance criteria includes "Verify in browser using pdm-webapp-testing skill":
 
 1. Start dev server if not running: `npm run dev`
 2. Use pdm-webapp-testing skill to:

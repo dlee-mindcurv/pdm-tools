@@ -285,5 +285,5 @@ After saving prd.json, inform the user they can now run PDM Ralph to execute the
 Or directly via CLI:
 
 ```bash
-pdm --feature $ARGUMENTS
+pdm --build-feature $ARGUMENTS
 ```

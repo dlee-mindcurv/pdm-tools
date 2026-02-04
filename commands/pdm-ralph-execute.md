@@ -80,13 +80,13 @@ node -e "const d=require('./product-development/features/$FEATURE_ID/prd.json');
 Execute the PDM Ralph orchestrator:
 
 ```bash
-pdm --feature $FEATURE_ID
+pdm --build-feature $FEATURE_ID
 ```
 
 **Optional: Custom max iterations**
 
 ```bash
-pdm --feature $FEATURE_ID --max-iterations 20
+pdm --build-feature $FEATURE_ID --max-iterations 20
 ```
 
 ---
