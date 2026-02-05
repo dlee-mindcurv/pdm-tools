@@ -7,7 +7,8 @@
     { "name": "pdm-code-reviewer", "path": "skills/pdm-code-reviewer", "description": "Comprehensive code review skill" },
     { "name": "pdm-webapp-testing", "path": "skills/pdm-webapp-testing", "description": "Browser testing with Playwright" },
     { "name": "pdm-react-best-practices", "path": "skills/pdm-react-best-practices", "description": "React/Next.js performance optimization" },
-    { "name": "pdm-jest-react-testing", "path": "skills/pdm-jest-react-testing", "description": "React component testing with Jest and React Testing Library" }
+    { "name": "pdm-jest-react-testing", "path": "skills/pdm-jest-react-testing", "description": "React component testing with Jest and React Testing Library" },
+    { "name": "pdm-nextjs-react-typescript", "path": "skills/pdm-nextjs-react-typescript", "description": "TypeScript, Next.js App Router, React, Shadcn UI, Radix UI and Tailwind" }
   ],
   "commands": [
     { "name": "pdm-code-review.md", "path": "commands/pdm-code-review.md", "description": "Code quality review" },
