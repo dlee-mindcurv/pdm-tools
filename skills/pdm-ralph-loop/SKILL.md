@@ -46,8 +46,13 @@ Run these checks in order:
 # Typecheck (via build)
 npm run build
 
+# test
+npm run test
+
 # Lint
 npm run lint
+
+
 ```
 
 **If checks fail:**

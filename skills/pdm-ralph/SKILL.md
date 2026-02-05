@@ -30,6 +30,7 @@ Take a PRD (markdown file or text) and convert it to `prd.json` in your ralph di
       "acceptanceCriteria": [
         "Criterion 1",
         "Criterion 2",
+        "Jest tests pass with 80% coverage",
         "Typecheck passes"
       ],
       "priority": 1,
@@ -87,6 +88,7 @@ Each criterion must be something Ralph can CHECK, not something vague.
 - "Add `status` column to tasks table with default 'pending'"
 - "Filter dropdown has options: All, Active, Completed"
 - "Clicking delete shows confirmation dialog"
+- For UI Changes generate unit tests using `/write-tests` command
 - "Typecheck passes"
 - "Tests pass"
 
@@ -216,6 +218,7 @@ Add ability to mark tasks with different statuses.
       "acceptanceCriteria": [
         "Filter dropdown: All | Pending | In Progress | Done",
         "Filter persists in URL params",
+         "Jest tests pass",
         "Typecheck passes",
         "Verify in browser using pdm-webapp-testing skill"
       ],
@@ -252,6 +255,7 @@ Before writing prd.json, verify:
 - [ ] Each story is completable in one iteration (small enough)
 - [ ] Stories are ordered by dependency (schema to backend to UI)
 - [ ] Every story has "Typecheck passes" as criterion
+- [ ] UI stories have "Jest coverage 80%" as criterion
 - [ ] UI stories have "Verify in browser using pdm-webapp-testing skill" as criterion
 - [ ] Acceptance criteria are verifiable (not vague)
 - [ ] No story depends on a later story

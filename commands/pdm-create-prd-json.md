@@ -31,6 +31,8 @@ Read the PRD from: `product-development/features/$ARGUMENTS/prd.md`
       "acceptanceCriteria": [
         "Criterion 1",
         "Criterion 2",
+        "Write unit tests for new UI components",
+        "Tests pass/jest coverage is 80%",
         "Typecheck passes"
       ],
       "priority": 1,
@@ -84,6 +86,8 @@ US-001: Dark Mode Toggle
 - Toggle button in header displays sun icon (dark mode) or moon icon (light mode)
 - All components have dark: Tailwind variants (slate-900 bg, slate-100 text)
 - Clicking toggle switches theme instantly without page reload
+- Write unit tests as seperate files for new UI components.
+- Tests pass/jest coverage is 80%
 - Typecheck passes
 - Verify in browser using pdm-webapp-testing skill
 ```
@@ -141,13 +145,13 @@ Assign a model to each story based on complexity. Faster models = faster executi
       "id": "US-001",
       "title": "Add status column to database",
       "model": "haiku",
-      "acceptanceCriteria": ["Add status column with default 'pending'", "Typecheck passes"]
+      "acceptanceCriteria": ["Add status column with default 'pending'","Typecheck passes"]
     },
     {
       "id": "US-002",
       "title": "Create status filter API",
       "model": "sonnet",
-      "acceptanceCriteria": ["GET /api/tasks accepts ?status param", "Returns filtered results", "Typecheck passes"]
+      "acceptanceCriteria": ["GET /api/tasks accepts ?status param", "Returns filtered results", "Tests pass/jest coverage is 80%", "Typecheck passes"]
     },
     {
       "id": "US-003",
@@ -201,6 +205,7 @@ Stories execute in priority order. Earlier stories must not depend on later ones
 
 ---
 
+
 ## Acceptance Criteria: Must Be Verifiable
 
 Each criterion must be something PDM Ralph can CHECK, not something vague.
@@ -209,6 +214,7 @@ Each criterion must be something PDM Ralph can CHECK, not something vague.
 - "Add `status` column to tasks table with default 'pending'"
 - "Filter dropdown has options: All, Active, Completed"
 - "Clicking delete shows confirmation dialog"
+- "Tests pass/jest coverage is 80%"
 - "Typecheck passes"
 - "Tests pass"
 
@@ -218,8 +224,10 @@ Each criterion must be something PDM Ralph can CHECK, not something vague.
 - "Good UX"
 - "Handles edge cases"
 
+
 ### Always include as final criterion:
 ```
+"Tests pass/jest coverage is 80%"
 "Typecheck passes"
 ```
 
@@ -276,11 +284,7 @@ Before writing prd.json, verify:
 
 ## Next Step
 
-After saving prd.json, inform the user they can now run PDM Ralph to execute the stories:
-
-```
-/pdm-ralph-execute $ARGUMENTS
-```
+After saving prd.json exit claude code.
 
 Or directly via CLI:
 

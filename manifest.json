@@ -12,8 +12,7 @@
     { "name": "pdm-code-review.md", "path": "commands/pdm-code-review.md", "description": "Code quality review" },
     { "name": "pdm-create-jtbd.md", "path": "commands/pdm-create-jtbd.md", "description": "Create Jobs-to-be-Done document" },
     { "name": "pdm-create-prd-json.md", "path": "commands/pdm-create-prd-json.md", "description": "Convert PRD to prd.json" },
-    { "name": "pdm-create-prd.md", "path": "commands/pdm-create-prd.md", "description": "Create Product Requirements Document" },
-    { "name": "pdm-create-prp.md", "path": "commands/pdm-create-prp.md", "description": "Create Product Requirement Prompt" },
-    { "name": "pdm-ralph-execute.md", "path": "commands/pdm-ralph-execute.md", "description": "Execute Ralph on a feature" }
+    { "name": "pdm-ralph-execute.md", "path": "commands/pdm-ralph-execute.md", "description": "Execute Ralph on a feature" },
+    { "name": "pdm-write-tests.md", "path": "commands/pdm-write-tests.md", "description": "Write comprehensive unit and integration tests" }
   ]
 }
