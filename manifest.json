@@ -1,20 +1,9 @@
 {
   "version": "1.0",
   "description": "PDM (Project Dev Manager) - Autonomous feature development tools for Claude Code",
-  "skills": [
-    { "name": "pdm-ralph", "path": "skills/pdm-ralph", "description": "Convert PRDs to prd.json format" },
-    { "name": "pdm-ralph-loop", "path": "skills/pdm-ralph-loop", "description": "Agent instructions for Ralph iterations" },
-    { "name": "pdm-code-reviewer", "path": "skills/pdm-code-reviewer", "description": "Comprehensive code review skill" },
-    { "name": "pdm-webapp-testing", "path": "skills/pdm-webapp-testing", "description": "Browser testing with Playwright" },
-    { "name": "pdm-react-best-practices", "path": "skills/pdm-react-best-practices", "description": "React/Next.js performance optimization" },
-    { "name": "pdm-jest-react-testing", "path": "skills/pdm-jest-react-testing", "description": "React component testing with Jest and React Testing Library" },
-    { "name": "pdm-nextjs-react-typescript", "path": "skills/pdm-nextjs-react-typescript", "description": "TypeScript, Next.js App Router, React, Shadcn UI, Radix UI and Tailwind" }
-  ],
   "commands": [
-    { "name": "pdm-code-review.md", "path": "commands/pdm-code-review.md", "description": "Code quality review" },
     { "name": "pdm-create-jtbd.md", "path": "commands/pdm-create-jtbd.md", "description": "Create Jobs-to-be-Done document" },
-    { "name": "pdm-create-prd-json.md", "path": "commands/pdm-create-prd-json.md", "description": "Convert PRD to prd.json" },
-    { "name": "pdm-ralph-execute.md", "path": "commands/pdm-ralph-execute.md", "description": "Execute Ralph on a feature" },
-    { "name": "pdm-write-tests.md", "path": "commands/pdm-write-tests.md", "description": "Write comprehensive unit and integration tests" }
+    { "name": "pdm-create-prd.md", "path": "commands/pdm-create-prd.md", "description": "Create Product Requirements Document (PRD) for new features" },
+    { "name": "pdm-create-prd-json.md", "path": "commands/pdm-create-prd-json.md", "description": "Convert PRD to prd.json" }
   ]
 }

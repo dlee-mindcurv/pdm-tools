@@ -145,19 +145,130 @@ Assign a model to each story based on complexity. Faster models = faster executi
       "id": "US-001",
       "title": "Add status column to database",
       "model": "haiku",
-      "acceptanceCriteria": ["Add status column with default 'pending'","Typecheck passes"]
+      "acceptanceCriteria": ["Add status column with default 'pending'"],
+      "jobs": [
+        {
+          "name": "build",
+          "agent": "build-user-story",
+          "status": "pending",
+          "dependsOn": null,
+          "notes": ""
+        },
+        {
+          "name": "playwright",
+          "agent": "run-playwright",
+          "status": "pending",
+          "dependsOn": "build",
+          "notes": ""
+        },
+        {
+          "name": "test",
+          "agent": "write-tests",
+          "status": "pending",
+          "dependsOn": "build",
+          "notes": ""
+        },
+        {
+          "name": "typecheck",
+          "agent": "run-typecheck",
+          "status": "pending",
+          "dependsOn": "test",
+          "notes": ""
+        },
+        {
+          "name": "lint",
+          "agent": "run-lint",
+          "status": "pending",
+          "dependsOn": "typecheck",
+          "notes": ""
+        }
+      ]
     },
     {
       "id": "US-002",
       "title": "Create status filter API",
       "model": "sonnet",
-      "acceptanceCriteria": ["GET /api/tasks accepts ?status param", "Returns filtered results", "Tests pass/jest coverage is 80%", "Typecheck passes"]
+      "acceptanceCriteria": ["GET /api/tasks accepts ?status param", "Returns filtered results"],
+      "jobs": [
+        {
+          "name": "build",
+          "agent": "build-user-story",
+          "status": "pending",
+          "dependsOn": null,
+          "notes": ""
+        },
+        {
+          "name": "playwright",
+          "agent": "run-playwright",
+          "status": "pending",
+          "dependsOn": "build",
+          "notes": ""
+        },
+        {
+          "name": "test",
+          "agent": "write-tests",
+          "status": "pending",
+          "dependsOn": "build",
+          "notes": ""
+        },
+        {
+          "name": "typecheck",
+          "agent": "run-typecheck",
+          "status": "pending",
+          "dependsOn": "test",
+          "notes": ""
+        },
+        {
+          "name": "lint",
+          "agent": "run-lint",
+          "status": "pending",
+          "dependsOn": "typecheck",
+          "notes": ""
+        }
+      ]
     },
     {
       "id": "US-003",
       "title": "Add filter dropdown to UI",
       "model": "sonnet",
-      "acceptanceCriteria": ["Dropdown with All/Active/Completed options", "Calls API on change", "Typecheck passes", "Verify in browser"]
+      "acceptanceCriteria": ["Dropdown with All/Active/Completed options"],
+      "jobs": [
+        {
+          "name": "build",
+          "agent": "build-user-story",
+          "status": "pending",
+          "dependsOn": null,
+          "notes": ""
+        },
+        {
+          "name": "playwright",
+          "agent": "run-playwright",
+          "status": "pending",
+          "dependsOn": "build",
+          "notes": ""
+        },
+        {
+          "name": "test",
+          "agent": "write-tests",
+          "status": "pending",
+          "dependsOn": "build",
+          "notes": ""
+        },
+        {
+          "name": "typecheck",
+          "agent": "run-typecheck",
+          "status": "pending",
+          "dependsOn": "test",
+          "notes": ""
+        },
+        {
+          "name": "lint",
+          "agent": "run-lint",
+          "status": "pending",
+          "dependsOn": "typecheck",
+          "notes": ""
+        }
+      ]
     }
   ]
 }
@@ -225,31 +336,6 @@ Each criterion must be something PDM Ralph can CHECK, not something vague.
 - "Handles edge cases"
 
 
-### Always include as final criterion:
-```
-"Tests pass/jest coverage is 80%"
-"Typecheck passes"
-```
-
-### Lint -  if only a SINGLE or the LAST story in the feature:
-```
-"Lint passes"
-```
-
-### Browser verification - ONLY on the LAST story:
-```
-"Verify in browser using pdm-webapp-testing skill"
-```
-
-**IMPORTANT:** Only add browser verification to the FINAL story in prd.json, not intermediate stories. This avoids redundant dev server startups and Playwright launches that add ~3-5 minutes per story.
-
-**Example (3 stories):**
-- US-001: Schema changes → ends with "Typecheck passes" (NO browser check)
-- US-002: Backend API → ends with "Typecheck passes" (NO browser check)
-- US-003: Frontend UI → ends with "Typecheck passes" AND "Verify in browser" (YES - last story)
-
----
-
 ## Conversion Rules
 
 1. **Assess complexity first** - Count files/stories, determine if consolidation needed
@@ -260,8 +346,6 @@ Each criterion must be something PDM Ralph can CHECK, not something vague.
 6. **Priority**: Based on dependency order, then document order
 7. **All stories**: `passes: false` and empty `notes`
 8. **branchName**: `feature/[feature-id]`
-9. **Always add**: "Typecheck passes" to every story's acceptance criteria
-10. **Browser verification**: Only on the FINAL story (not intermediate ones)
 
 ---
 
@@ -285,9 +369,3 @@ Before writing prd.json, verify:
 ## Next Step
 
 After saving prd.json exit claude code.
-
-Or directly via CLI:
-
-```bash
-pdm --build-feature $ARGUMENTS
-```
