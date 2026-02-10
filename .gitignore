@@ -38,3 +38,4 @@ build/
 *.log
 logs/
 project-dev-manager/.claude/settings.local.json
+
