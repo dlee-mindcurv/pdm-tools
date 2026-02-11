@@ -52,9 +52,6 @@ Format:
 **Acceptance Criteria:**
 - [ ] Specific verifiable criterion
 - [ ] Another criterion
-- [ ] Tests pass/jest coverage is 80%
-- [ ] Typecheck/lint passes
-- [ ] **[UI stories only]** Verify in browser using pdm-webapp-testing skill
   Important:
 
 Acceptance criteria must be verifiable, not vague. "Works correctly" is bad. "Button shows confirmation dialog before deleting" is good.

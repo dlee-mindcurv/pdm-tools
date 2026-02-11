@@ -31,9 +31,6 @@ Read the PRD from: `product-development/features/$ARGUMENTS/prd.md`
       "acceptanceCriteria": [
         "Criterion 1",
         "Criterion 2",
-        "Write unit tests for new UI components",
-        "Tests pass/jest coverage is 80%",
-        "Typecheck passes"
       ],
       "priority": 1,
       "model": "sonnet",
@@ -87,9 +84,6 @@ US-001: Dark Mode Toggle
 - All components have dark: Tailwind variants (slate-900 bg, slate-100 text)
 - Clicking toggle switches theme instantly without page reload
 - Write unit tests as seperate files for new UI components.
-- Tests pass/jest coverage is 80%
-- Typecheck passes
-- Verify in browser using pdm-webapp-testing skill
 ```
 
 ### When to Keep Stories Separate
@@ -325,9 +319,6 @@ Each criterion must be something PDM Ralph can CHECK, not something vague.
 - "Add `status` column to tasks table with default 'pending'"
 - "Filter dropdown has options: All, Active, Completed"
 - "Clicking delete shows confirmation dialog"
-- "Tests pass/jest coverage is 80%"
-- "Typecheck passes"
-- "Tests pass"
 
 ### Bad criteria (vague):
 - "Works correctly"
