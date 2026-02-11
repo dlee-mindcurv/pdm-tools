@@ -21,6 +21,7 @@ Read the PRD from: `product-development/features/$ARGUMENTS/prd.md`
 ```json
 {
   "project": "[project-name from product.md or infer from codebase]",
+  "appDir": "[app-dir from product.md or infer from codebase]",
   "branchName": "feature/[feature-id]",
   "description": "[Feature description from PRD Introduction]",
   "userStories": [
@@ -30,7 +31,7 @@ Read the PRD from: `product-development/features/$ARGUMENTS/prd.md`
       "description": "As a [user], I want [feature] so that [benefit]",
       "acceptanceCriteria": [
         "Criterion 1",
-        "Criterion 2",
+        "Criterion 2"
       ],
       "priority": 1,
       "model": "sonnet",
