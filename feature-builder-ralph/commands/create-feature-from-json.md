@@ -1,0 +1,93 @@
+---
+name: create-feature-from-json
+allowed-tools: Read, Write, Edit, Exit, Grep, Glob, Task, Bash
+description: Create Feature from user stories
+argument-hint: [path to feature JSON file]
+---
+
+The first argument is the path to the feature JSON file (e.g., `features/pink-footer/prd.json`). All references below use `$FEATURE_FILE` to mean that provided path.
+
+Read `appDir` from the feature file with `jq -r '.appDir' $FEATURE_FILE`. All references below use `$APP_DIR` to mean this value (e.g., `example`).
+
+## Worktree detection
+
+Derive the feature name from `$FEATURE_FILE` (e.g., for `features/pink-footer/prd.json`, the feature name is `pink-footer`). Check if a worktree exists at `.worktrees/<feature-name>/`. If it does:
+- Override `$APP_DIR` to `.worktrees/<feature-name>/<original-appDir>` (e.g., `.worktrees/pink-footer/example`)
+- Set `$LEARNINGS_FILE` to `.worktrees/<feature-name>/features/learnings.md`
+- Read `branchName` from the feature file with `jq -r '.branchName' $FEATURE_FILE` — store as `$BRANCH_NAME` for use in git operations later
+
+If no worktree exists (backward compatibility):
+- `$APP_DIR` stays as the original value
+- Set `$LEARNINGS_FILE` to `features/learnings.md`
+
+## Log initialization
+
+Derive the feature directory from `$FEATURE_FILE` (e.g., `features/pink-footer/`). Set `$LOG_FILE` to `<feature-dir>/agent-log.json`.
+
+Check if this is a fresh start: use jq to test if the first story's jobs are ALL `"pending"`. If so (or if `$LOG_FILE` doesn't exist), create/reset `$LOG_FILE` to `[]`.
+
+## Status check and dispatch
+
+Run `jq '[.userStories[] | {id, passes, jobs: [.jobs[] | {name, status, dependsOn}]}]' $FEATURE_FILE` to check status.
+
+1. If all userStories have `passes: true`, proceed to the **Feature completion** section below
+2. Find the first story where `passes: false`
+3. Find runnable jobs: A job is runnable when its own status is `"pending"` AND (`dependsOn` is null OR the dependency job's status is `"done"`), **except**: the `playwright` job is runnable when its own status is `"pending"` AND the `build` job's status is `"generated"`. All other jobs continue to gate on `"done"`.
+4. Before dispatching agents, capture: `BATCH_START=$(date -u +%Y-%m-%dT%H:%M:%SZ)`. Then invoke each runnable job's agent in parallel via Task tool (read the full story data with `jq '.userStories[INDEX]' $FEATURE_FILE` to pass to each). **Include all three paths in each agent's prompt:**
+   - `$FEATURE_FILE` — the feature file path in the main directory (for status updates)
+   - `$APP_DIR` — the app directory, which may be in a worktree (for code changes)
+   - `$LEARNINGS_FILE` — the learnings file path, which may be in a worktree (for reading/writing learnings)
+
+   After all Task calls return, capture: `BATCH_END=$(date -u +%Y-%m-%dT%H:%M:%SZ)`.
+
+## Write log entries
+
+For each agent that ran, parse its JSON response. Construct a log entry object with:
+- `storyId`, `job`, `agent` from the dispatch context
+- `status`, `iterations`, `error` from the agent's JSON response
+- `startedAt`/`finishedAt` from the agent's JSON response; if either is `null`, substitute `$BATCH_START`/`$BATCH_END` respectively
+
+Read `$LOG_FILE`, append the new entries to the array, and write it back.
+
+The agent-to-job mapping is: `build-user-story` → `build`, `run-lint` → `lint`, `run-typecheck` → `typecheck`, `write-tests` → `test`, `run-playwright` → `playwright`.
+
+## Finalize story
+
+5. After all jobs for the story are `done`, set `passes: true` in `$FEATURE_FILE`
+
+## Feature completion
+
+When all userStories have `passes: true`, perform the following steps before outputting the completion promise.
+
+### Learnings integration (only if worktree is in use)
+
+If a worktree is in use (i.e., `.worktrees/<feature-name>/` exists):
+
+1. Read `$LEARNINGS_FILE` (the worktree's `features/learnings.md`)
+2. If it contains findings beyond the initial template (i.e., not just "(none yet)"), read the worktree's `CLAUDE.md` at `.worktrees/<feature-name>/CLAUDE.md` and append the learnings to a `## Learnings` section at the bottom. If the section already exists, merge the new findings into it. Write the updated file back.
+
+### Git operations (only if worktree is in use)
+
+If a worktree is in use:
+
+1. Read `description` from the feature file: `jq -r '.description' $FEATURE_FILE`
+2. Read the list of story titles: `jq -r '.userStories[].title' $FEATURE_FILE`
+3. Stage app changes: `git -C .worktrees/<feature-name> add <original-appDir>/`
+4. Stage CLAUDE.md if it was modified: `git -C .worktrees/<feature-name> add CLAUDE.md`
+5. Commit: `git -C .worktrees/<feature-name> commit -m "feat(<feature-name>): <description>"`
+6. Push: `git -C .worktrees/<feature-name> push -u origin $BRANCH_NAME`
+7. Create PR:
+   ```
+   gh pr create --head $BRANCH_NAME --base main \
+     --title "feat: <description>" \
+     --body "<PR body>"
+   ```
+   The PR body should include:
+   - Feature description
+   - List of implemented user stories with their titles
+   - Note: "Auto-generated by Ralph"
+8. Log the PR URL in the output
+
+### Completion promise
+
+Output `<promise>RALPH-LOOP-COMPLETED</promise>`

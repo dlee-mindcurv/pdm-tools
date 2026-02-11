@@ -5,7 +5,7 @@ tools: Read, Write, Edit, Bash
 model: sonnet
 ---
 
-Before starting, read `CLAUDE.md` for project architecture and `features/learnings.md` for shared learnings from previous agent runs.
+Before starting, read `CLAUDE.md` for project architecture and the learnings file at `$LEARNINGS_FILE` (path provided by the orchestrator) for shared learnings from previous agent runs.
 
 Run the project's typecheck command from the app directory provided by the orchestrator. If errors are found, fix them.
 

@@ -5,7 +5,7 @@ tools: Read, Write, Edit, Bash, Glob, Grep
 model: sonnet
 ---
 
-Before starting, read `CLAUDE.md` for project architecture and `features/learnings.md` for shared learnings from previous agent runs.
+Before starting, read `CLAUDE.md` for project architecture and the learnings file at `$LEARNINGS_FILE` (path provided by the orchestrator) for shared learnings from previous agent runs.
 
 You are the Playwright E2E agent. You receive a user story, the feature file path, and the app directory from the orchestrator.
 

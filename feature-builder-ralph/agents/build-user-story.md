@@ -5,7 +5,7 @@ tools: Read, Write, Edit
 model: sonnet
 ---
 
-Before starting, read `CLAUDE.md` for project architecture and `features/learnings.md` for shared learnings from previous agent runs.
+Before starting, read `CLAUDE.md` for project architecture and the learnings file at `$LEARNINGS_FILE` (path provided by the orchestrator) for shared learnings from previous agent runs.
 
 Implement the solution for the provided user story. Satisfy every acceptance criterion. DO NOTHING ELSE.
 
