@@ -8,7 +8,7 @@ A collection of Claude Code automation modules for planning, requirements, and a
 cc-automation-tools/
 ├── project-dev-manager/   # Planning & requirements
 │   └── commands/
-└── feature-builder/       # Autonomous feature execution
+└── feature-builder-ralph/  # Autonomous feature execution
     ├── commands/
     └── agents/
 ```
@@ -25,7 +25,7 @@ Tools for creating planning and requirements documents.
 | `/pdm-create-prd` | Create Product Requirements Document (PRD) for new features |
 | `/pdm-create-prd-json` | Convert PRD to prd.json |
 
-### Feature Builder
+### Feature Builder Ralph
 
 Autonomous feature execution from a JSON feature spec. The `create-feature-from-json` command orchestrates the agents below to build, test, and validate each user story.
 
