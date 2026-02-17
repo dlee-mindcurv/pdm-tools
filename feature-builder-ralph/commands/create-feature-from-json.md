@@ -7,12 +7,12 @@ argument-hint: [path to feature JSON file]
 
 The first argument is the path to the feature JSON file (e.g., `features/pink-footer/prd.json`). All references below use `$FEATURE_FILE` to mean that provided path.
 
-Read `appDir` from the feature file with `jq -r '.appDir' $FEATURE_FILE`. All references below use `$APP_DIR` to mean this value (e.g., `example`).
+Read `appDir` from the feature file with `jq -r '.appDir' $FEATURE_FILE`. All references below use `$APP_DIR` to mean this value (e.g., `.`).
 
 ## Worktree detection
 
 Derive the feature name from `$FEATURE_FILE` (e.g., for `features/pink-footer/prd.json`, the feature name is `pink-footer`). Check if a worktree exists at `.worktrees/<feature-name>/`. If it does:
-- Override `$APP_DIR` to `.worktrees/<feature-name>/<original-appDir>` (e.g., `.worktrees/pink-footer/example`)
+- Override `$APP_DIR` to `.worktrees/<feature-name>/<original-appDir>` (e.g., `.worktrees/pink-footer/app`)
 - Set `$LEARNINGS_FILE` to `.worktrees/<feature-name>/features/learnings.md`
 - Read `branchName` from the feature file with `jq -r '.branchName' $FEATURE_FILE` — store as `$BRANCH_NAME` for use in git operations later
 
@@ -27,6 +27,12 @@ Derive the feature directory from `$FEATURE_FILE` (e.g., `features/pink-footer/`
 Check if this is a fresh start: use jq to test if the first story's jobs are ALL `"pending"`. If so (or if `$LOG_FILE` doesn't exist), create/reset `$LOG_FILE` to `[]`.
 
 ## Status check and dispatch
+
+> **CRITICAL**: The orchestrator is the SOLE authority over job dispatch and status management.
+> - NEVER manually edit job statuses in `$FEATURE_FILE` — only dispatched sub-agents may update their own job status
+> - NEVER skip the dispatch loop by running agents outside this orchestrator
+> - NEVER output the completion promise unless `jq '[.userStories[].passes] | all' $FEATURE_FILE` returns `true`
+> - Each agent MUST receive `$FEATURE_FILE`, `$APP_DIR`, and `$LEARNINGS_FILE` in its prompt so it can update its own status
 
 Run `jq '[.userStories[] | {id, passes, jobs: [.jobs[] | {name, status, dependsOn}]}]' $FEATURE_FILE` to check status.
 
@@ -96,6 +102,14 @@ Delete the Ralph loop state file so the stop hook allows exit:
 ```bash
 rm -f .claude/ralph-loop.local.md
 ```
+
+### Pre-completion verification
+
+Before outputting the completion promise, run:
+```bash
+jq '[.userStories[] | select(.passes != true)] | length' $FEATURE_FILE
+```
+If the result is NOT `0`, do NOT output the promise. Instead, return to "Status check and dispatch" to process remaining stories.
 
 ### Completion promise
 

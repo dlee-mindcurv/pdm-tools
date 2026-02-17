@@ -21,7 +21,7 @@ Read the PRD from: `product-development/features/$ARGUMENTS/prd.md`
 ```json
 {
   "project": "[project-name from product.md or infer from codebase]",
-  "appDir": "[app-dir from product.md or infer from codebase]",
+  "appDir": ".",
   "branchName": "feature/[feature-id]",
   "description": "[Feature description from PRD Introduction]",
   "userStories": [
