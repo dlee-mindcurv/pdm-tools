@@ -55,7 +55,7 @@ Format:
   Important:
 
 Acceptance criteria must be verifiable, not vague. "Works correctly" is bad. "Button shows confirmation dialog before deleting" is good.
-For any story with UI changes: Always include "Verify in browser using pdm-webapp-testing skill" as acceptance criteria. This ensures visual verification of frontend work.
+
 4. Functional Requirements
 
 Numbered list of specific functionalities:
