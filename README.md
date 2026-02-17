@@ -41,6 +41,18 @@ Autonomous feature execution from a JSON feature spec. The `create-feature-from-
 | `run-typecheck` | Runs TypeScript type checking and fixes errors |
 | `write-tests` | Writes unit tests for a user story |
 
+## Agent Skills
+
+Skills from `~/.agents/skills/` to inject into subagents. The orchestrator reads this mapping and passes skill content inline to each agent type. Append `:full` to a skill name to load AGENTS.md (full rules with code examples) instead of the default SKILL.md (compact index).
+
+| Agent              | Skills                             |
+|--------------------|-------------------------------------|
+| `build-user-story` | `vercel-react-best-practices:full` |
+| `write-tests`      |                                    |
+| `run-playwright`   |                                    |
+| `run-typecheck`    |                                    |
+| `run-lint`         |                                    |
+
 ## Installation
 
 ```bash

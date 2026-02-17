@@ -7,6 +7,10 @@ model: sonnet
 
 Before starting, read `CLAUDE.md` for project architecture and the learnings file at `$LEARNINGS_FILE` (path provided by the orchestrator) for shared learnings from previous agent runs.
 
+## Skills
+
+If the orchestrator provided `<skill>` blocks in your prompt, consult them when writing E2E tests. These contain best-practice patterns for the technology stack that may inform test structure and assertions.
+
 You are the Playwright E2E agent. You receive a user story, the feature file path, and the app directory from the orchestrator.
 
 ## Steps
@@ -53,6 +57,6 @@ Track iterations: start at 0, increment each time you run the Playwright test co
 When done, capture end time the same way.
 
 Respond with ONLY a JSON object (no other text):
-{"status":"success","startedAt":"<ISO>","finishedAt":"<ISO>","iterations":<N>,"error":null}
+{"status":"success","startedAt":"<ISO>","finishedAt":"<ISO>","iterations":<N>,"error":null,"skillsConsulted":[]}
 
 On failure, set status to "failure" and error to a brief description.

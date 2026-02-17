@@ -141,41 +141,11 @@ Assign a model to each story based on complexity. Faster models = faster executi
       "model": "haiku",
       "acceptanceCriteria": ["Add status column with default 'pending'"],
       "jobs": [
-        {
-          "name": "build",
-          "agent": "build-user-story",
-          "status": "pending",
-          "dependsOn": null,
-          "notes": ""
-        },
-        {
-          "name": "playwright",
-          "agent": "run-playwright",
-          "status": "pending",
-          "dependsOn": "build",
-          "notes": ""
-        },
-        {
-          "name": "test",
-          "agent": "write-tests",
-          "status": "pending",
-          "dependsOn": "build",
-          "notes": ""
-        },
-        {
-          "name": "typecheck",
-          "agent": "run-typecheck",
-          "status": "pending",
-          "dependsOn": "test",
-          "notes": ""
-        },
-        {
-          "name": "lint",
-          "agent": "run-lint",
-          "status": "pending",
-          "dependsOn": "typecheck",
-          "notes": ""
-        }
+        { "name": "build", "agent": "build-user-story", "status": "pending", "dependsOn": null, "notes": "" },
+        { "name": "playwright", "agent": "run-playwright", "status": "pending", "dependsOn": "build", "notes": "" },
+        { "name": "lint", "agent": "run-lint", "status": "pending", "dependsOn": "playwright", "notes": "" },
+        { "name": "typecheck", "agent": "run-typecheck", "status": "pending", "dependsOn": "lint", "notes": "" },
+        { "name": "test", "agent": "write-tests", "status": "pending", "dependsOn": "typecheck", "notes": "" }
       ]
     },
     {
@@ -183,86 +153,14 @@ Assign a model to each story based on complexity. Faster models = faster executi
       "title": "Create status filter API",
       "model": "sonnet",
       "acceptanceCriteria": ["GET /api/tasks accepts ?status param", "Returns filtered results"],
-      "jobs": [
-        {
-          "name": "build",
-          "agent": "build-user-story",
-          "status": "pending",
-          "dependsOn": null,
-          "notes": ""
-        },
-        {
-          "name": "playwright",
-          "agent": "run-playwright",
-          "status": "pending",
-          "dependsOn": "build",
-          "notes": ""
-        },
-        {
-          "name": "test",
-          "agent": "write-tests",
-          "status": "pending",
-          "dependsOn": "build",
-          "notes": ""
-        },
-        {
-          "name": "typecheck",
-          "agent": "run-typecheck",
-          "status": "pending",
-          "dependsOn": "test",
-          "notes": ""
-        },
-        {
-          "name": "lint",
-          "agent": "run-lint",
-          "status": "pending",
-          "dependsOn": "typecheck",
-          "notes": ""
-        }
-      ]
+      "jobs": "... same job pipeline as above ..."
     },
     {
       "id": "US-003",
       "title": "Add filter dropdown to UI",
       "model": "sonnet",
       "acceptanceCriteria": ["Dropdown with All/Active/Completed options"],
-      "jobs": [
-        {
-          "name": "build",
-          "agent": "build-user-story",
-          "status": "pending",
-          "dependsOn": null,
-          "notes": ""
-        },
-        {
-          "name": "playwright",
-          "agent": "run-playwright",
-          "status": "pending",
-          "dependsOn": "build",
-          "notes": ""
-        },
-        {
-          "name": "test",
-          "agent": "write-tests",
-          "status": "pending",
-          "dependsOn": "build",
-          "notes": ""
-        },
-        {
-          "name": "typecheck",
-          "agent": "run-typecheck",
-          "status": "pending",
-          "dependsOn": "test",
-          "notes": ""
-        },
-        {
-          "name": "lint",
-          "agent": "run-lint",
-          "status": "pending",
-          "dependsOn": "typecheck",
-          "notes": ""
-        }
-      ]
+      "jobs": "... same job pipeline as above ..."
     }
   ]
 }
