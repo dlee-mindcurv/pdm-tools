@@ -84,7 +84,6 @@ US-001: Dark Mode Toggle
 - Toggle button in header displays sun icon (dark mode) or moon icon (light mode)
 - All components have dark: Tailwind variants (slate-900 bg, slate-100 text)
 - Clicking toggle switches theme instantly without page reload
-- Write unit tests as seperate files for new UI components.
 ```
 
 ### When to Keep Stories Separate
