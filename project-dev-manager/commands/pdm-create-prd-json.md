@@ -21,7 +21,7 @@ Read the PRD from: `product-development/features/$ARGUMENTS/prd.md`
 ```json
 {
   "project": "[project-name from product.md or infer from codebase]",
-  "appDir": "[app-dir from product.md or infer from codebase]",
+  "appDir": "[app-dir infer from codebase]",
   "branchName": "feature/[feature-id]",
   "description": "[Feature description from PRD Introduction]",
   "userStories": [
@@ -84,7 +84,6 @@ US-001: Dark Mode Toggle
 - Toggle button in header displays sun icon (dark mode) or moon icon (light mode)
 - All components have dark: Tailwind variants (slate-900 bg, slate-100 text)
 - Clicking toggle switches theme instantly without page reload
-- Write unit tests as seperate files for new UI components.
 ```
 
 ### When to Keep Stories Separate
@@ -350,8 +349,6 @@ Before writing prd.json, verify:
 - [ ] **Assigned models** - haiku for simple, sonnet for standard, opus for complex
 - [ ] Each story is completable in one iteration (small enough)
 - [ ] Stories are ordered by dependency (schema → backend → UI)
-- [ ] Every story has "Typecheck passes" as criterion
-- [ ] **Only final story** has "Verify in browser" (not intermediate stories)
 - [ ] Acceptance criteria are verifiable (not vague)
 - [ ] No story depends on a later story
 - [ ] All stories have `passes: false` and empty `notes`
