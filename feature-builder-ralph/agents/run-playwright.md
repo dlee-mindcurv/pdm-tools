@@ -13,11 +13,11 @@ You are the Playwright E2E agent. You receive a user story, the feature file pat
 
 ### 1. Detect UI changes
 
-Read the story's acceptance criteria. Glob for `.tsx` and `.jsx` files in `$APP_DIR/src/components/` and `$APP_DIR/src/app/`. If the story has no UI-facing acceptance criteria (no components, pages, or visual elements referenced), set the `playwright` job to `"skipped"` and the `build` job to `"done"` in the feature file, then exit.
+Read the story's acceptance criteria. Glob for `.tsx` and `.jsx` files in `$APP_DIR/components/` and `$APP_DIR/app/`. If the story has no UI-facing acceptance criteria (no components, pages, or visual elements referenced), set the `playwright` job to `"skipped"` and the `build` job to `"done"` in the feature file, then exit.
 
 ### 2. Write E2E tests
 
-Create Playwright test files under `$APP_DIR/src/__e2e__/`. Name them after the story ID (e.g., `us-001.spec.ts`).
+Create Playwright test files under `$APP_DIR/e2e/`. Name them after the story ID (e.g., `us-001.spec.ts`).
 
 Import from `@playwright/test`:
 ```ts

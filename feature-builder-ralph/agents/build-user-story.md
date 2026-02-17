@@ -11,7 +11,12 @@ Implement the solution for the provided user story. Satisfy every acceptance cri
 
 All application files live in the app directory provided by the orchestrator. Create and edit files under that directory.
 
-When complete, set the "build" job status to "generated" for this story in the feature file path provided by the orchestrator. Do NOT set it to "done" — the Playwright agent will promote it to "done" after visual validation.
+## CRITICAL: Status update
+
+When complete, you MUST update the feature file at the path provided by the orchestrator:
+- Set the `build` job status to `"generated"` (NOT `"done"`)
+- The Playwright agent will later promote it to `"done"` after visual validation
+- If the feature file path was not provided, report this as an error in your JSON response
 
 ## Logging
 
