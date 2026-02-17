@@ -349,7 +349,6 @@ Before writing prd.json, verify:
 - [ ] **Assigned models** - haiku for simple, sonnet for standard, opus for complex
 - [ ] Each story is completable in one iteration (small enough)
 - [ ] Stories are ordered by dependency (schema → backend → UI)
-- [ ] Every story has "Typecheck passes" as criterion
 - [ ] **Only final story** has "Verify in browser" (not intermediate stories)
 - [ ] Acceptance criteria are verifiable (not vague)
 - [ ] No story depends on a later story
