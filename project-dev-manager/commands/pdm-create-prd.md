@@ -73,7 +73,6 @@ What this feature will NOT include. Critical for managing scope.
 UI/UX requirements
 Link to mockups if available
 Relevant existing components to reuse
-For new UI components, or modifications to existing components, associated unit tests must be written or updated.
 
 7. Technical Considerations (Optional)
 
