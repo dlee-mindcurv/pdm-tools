@@ -352,6 +352,7 @@ Before writing prd.json, verify:
 - [ ] **Only final story** has "Verify in browser" (not intermediate stories)
 - [ ] Acceptance criteria are verifiable (not vague)
 - [ ] No story depends on a later story
+- [ ] Remove any specific acceptance criteria involving creating unit tests, linting, typechecking, as these tasks handled by other agents
 - [ ] All stories have `passes: false` and empty `notes`
 
 ---
