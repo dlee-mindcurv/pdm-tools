@@ -109,6 +109,16 @@ jq '{
 
 If `incompleteCount` is NOT `0`, do NOT proceed. Instead, return to "Log initialization and status check" to process remaining stories.
 
+### Write completion marker
+
+Immediately after confirming `incompleteCount` is `0`, write a completion marker file:
+
+```bash
+echo "done" > .claude/ralph-completed
+```
+
+This marker is written before learnings/git operations so it persists even if context compression later causes Claude to skip the `rm` and `<promise>` output steps.
+
 ### Learnings integration (only if worktree is in use)
 
 If a worktree is in use (i.e., `.worktrees/<feature-name>/` exists):
