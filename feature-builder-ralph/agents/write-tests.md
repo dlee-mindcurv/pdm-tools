@@ -7,6 +7,8 @@ model: sonnet
 
 Before starting, read `CLAUDE.md` for project architecture and the learnings file at `$LEARNINGS_FILE` (path provided by the orchestrator) for shared learnings from previous agent runs.
 
+**Write learnings**: If you encounter a non-obvious problem during iteration (e.g., a test fails for a reason unrelated to the acceptance criteria — mock setup quirks, import resolution, framework-specific gotchas), append a concise finding to `$LEARNINGS_FILE` after resolving it. Format: `- [write-tests] <story-id>: <one-line finding>`. This helps future agent runs avoid the same pitfall.
+
 ## Skills
 
 If the orchestrator provided `<skill>` blocks in your prompt, consult them when writing tests. These contain best-practice patterns for the technology stack that may inform test structure and assertions.

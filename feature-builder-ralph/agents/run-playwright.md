@@ -7,6 +7,8 @@ model: sonnet
 
 Before starting, read `CLAUDE.md` for project architecture and the learnings file at `$LEARNINGS_FILE` (path provided by the orchestrator) for shared learnings from previous agent runs.
 
+**Write learnings**: If you encounter a non-obvious problem during iteration (e.g., a test fails for a reason unrelated to the acceptance criteria — focus issues, timing quirks, selector strategies), append a concise finding to `$LEARNINGS_FILE` after resolving it. Format: `- [run-playwright] <story-id>: <one-line finding>`. This helps future agent runs avoid the same pitfall.
+
 ## Skills
 
 If the orchestrator provided `<skill>` blocks in your prompt, consult them when writing E2E tests. These contain best-practice patterns for the technology stack that may inform test structure and assertions.
@@ -43,6 +45,8 @@ Execute `cd $APP_DIR && npx playwright test`. If tests fail:
 - Read the failure output carefully
 - Fix the **application code** if the UI doesn't match acceptance criteria, OR fix the **test** if the assertion is wrong
 - Re-run until all tests pass
+
+If you have run the tests 3 times and they still fail, stop iterating. Set the `playwright` job to `"done"` and the `build` job to `"done"`. In your JSON response, set `"error"` to a brief description of the remaining failures. Do not continue beyond 3 iterations — the unit test agent can cover interaction-heavy assertions more reliably.
 
 ### 4. Update statuses
 

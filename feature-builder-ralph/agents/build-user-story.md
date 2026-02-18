@@ -7,6 +7,8 @@ model: sonnet
 
 Before starting, read `CLAUDE.md` for project architecture and the learnings file at `$LEARNINGS_FILE` (path provided by the orchestrator) for shared learnings from previous agent runs.
 
+**Write learnings**: If you discover a non-obvious project convention (e.g., an existing utility, naming pattern, or workaround), append it to `$LEARNINGS_FILE`. Format: `- [build-user-story] <story-id>: <one-line finding>`.
+
 ## Skills
 
 If the orchestrator provided `<skill>` blocks in your prompt, consult them when making implementation decisions. These contain best-practice patterns for the technology stack. Prioritize patterns marked as CRITICAL or HIGH impact.
