@@ -43,7 +43,9 @@ For each agent type that has skills listed in the table:
 1. Parse each skill entry: if it ends with `:full`, strip the suffix and set target to `AGENTS.md`; otherwise set target to `SKILL.md`
 2. Resolve the file path in order:
    - `$HOME/.agents/skills/<skill-name>/<target>` (primary)
-   - `$HOME/.claude/skills/<skill-name>/<target>` (fallback location)
+   - `$HOME/.claude/skills/<skill-name>/<target>` (fallback location 1)
+   - `.agents/skills/<skill-name>/<target>` (fallback location 2)
+   - `.claude/skills/<skill-name>/<target>` (fallback location 3)
    - If the target file doesn't exist at either location, try the other file (AGENTS.md → SKILL.md or vice versa) at both locations
 3. Read the resolved file content
 4. If not found at any location, log a warning but continue without that skill
