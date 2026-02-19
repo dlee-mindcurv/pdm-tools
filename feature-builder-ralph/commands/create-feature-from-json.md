@@ -65,7 +65,7 @@ Use the `stories` array from the consolidated query to check status.
 1. If all userStories have `passes: true`, proceed to the **Feature completion** section below
 2. Use `firstIncomplete` from the consolidated query as the current story to process
 3. Find runnable jobs: A job is runnable when its own status is `"pending"` AND (`dependsOn` is null OR the dependency job's status is `"done"`), **except**: the `playwright` job is runnable when its own status is `"pending"` AND the `build` job's status is `"generated"`. All other jobs continue to gate on `"done"`.
-4. Before dispatching agents, capture: `BATCH_START=$(date -u +%Y-%m-%dT%H:%M:%SZ)`. Then invoke each runnable job's agent in parallel via Task tool using the `firstIncomplete` story data already loaded. **Include all three paths in each agent's prompt:**
+4. Before dispatching agents, capture: `BATCH_START=$(date -u +%Y-%m-%dT%H:%M:%SZ)`. Then invoke each runnable job's agent in parallel via Task tool using the `firstIncomplete` story data already loaded. **Each agent's prompt MUST begin with:** `Your assigned story is {id} ("{title}"). Work ONLY on this story — do not implement, plan, or act on any other story.` followed by the story's acceptance criteria. **Also include all three paths in each agent's prompt:**
    - `$FEATURE_FILE` — the feature file path in the main directory (for status updates)
    - `$APP_DIR` — the app directory, which may be in a worktree (for code changes)
    - `$LEARNINGS_FILE` — the learnings file path, which may be in a worktree (for reading/writing learnings)
