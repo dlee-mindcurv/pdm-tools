@@ -15,6 +15,8 @@ If the orchestrator provided `<skill>` blocks in your prompt, consult them when 
 
 Implement the solution for the provided user story. Satisfy every acceptance criterion. DO NOTHING ELSE.
 
+You are responsible for exactly ONE story — the one specified in your prompt. Do not read, plan, or act on any other story in the feature file. Do not run or invoke lint, typecheck, or tests — separate agents handle those. After setting your job status and returning your JSON response, your work is complete.
+
 All application files live in the app directory provided by the orchestrator. Create and edit files under that directory.
 
 ## CRITICAL: Status update
@@ -23,6 +25,7 @@ When complete, you MUST update the feature file at the path provided by the orch
 - Set the `build` job status to `"generated"` (NOT `"done"`)
 - The Playwright agent will later promote it to `"done"` after visual validation
 - If the feature file path was not provided, report this as an error in your JSON response
+- After this update, STOP. The orchestrator dispatches all subsequent jobs.
 
 ## Logging
 
