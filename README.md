@@ -1,3 +1,5 @@
+> **ARCHIVED** — This repository is no longer maintained. The tools here are not required by any downstream projects. The code remains available for reference only.
+
 # cc-automation-tools
 
 A collection of Claude Code automation modules for planning, requirements, and autonomous feature development.
